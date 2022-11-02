@@ -6,6 +6,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>27c3acec-59ae-409e-a27b-549ff86c0c44</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <AssemblyName>FindMyPubApi.$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>FindMyPubApi.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Title>Find My Pub Api</Title>
+    <Authors>Luis Balsa</Authors>
   </PropertyGroup>
 
   <ItemGroup>
