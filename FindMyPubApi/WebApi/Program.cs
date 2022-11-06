@@ -1,12 +1,9 @@
-using AutoMapper;
-using FindMyPubApi.BusinessLogic.AutoMapper;
 using FindMyPubApi.BusinessLogic.Contexts;
 using FindMyPubApi.BusinessLogic.Models;
 using FindMyPubApi.BusinessLogic.Repositories;
 using FindMyPubApi.BusinessLogic.Seeding;
 using FindMyPubApi.BusinessLogic.Services;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +15,6 @@ builder.Services.AddDbContext<MyPubDbContext>(optionsAction: opt =>
 );
 builder.Services.AddSingleton<ISeeder, CsvSeeder>();
 builder.Services.AddSingleton<ICsvService, CsvService>();
-AddAutoMapper(builder);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -43,14 +39,6 @@ app.MapControllers();
 SeedDatabase(app);
 
 app.Run();
-
-void AddAutoMapper(WebApplicationBuilder webApplicationBuilder)
-{
-    var mapperConfiguration = new MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfile>());
-    mapperConfiguration.AssertConfigurationIsValid();
-    var mapper = mapperConfiguration.CreateMapper();
-    webApplicationBuilder.Services.AddSingleton(mapper);
-}
 
 void SeedDatabase(WebApplication webApplication)
 {
