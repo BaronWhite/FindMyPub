@@ -1,25 +1,21 @@
-﻿using AutoFixture;
-using AutoFixture.AutoMoq;
-using FindMyPubApi.BusinessLogic.Models;
+﻿using FindMyPubApi.BusinessLogic.Models;
 using FindMyPubApi.BusinessLogic.Seeding;
 using FindMyPubApi.BusinessLogic.Services;
 using FluentAssertions;
 using Moq;
 
-namespace BusinessLogic.Tests.Seeding;
+namespace FindMyPubApi.BusinessLogic.Tests.Seeding;
 
-public class CsvSeederTests
+public class CsvSeederTests : AutoFixtureTestBase
 {
-    private readonly IFixture _fixture;
     private readonly CsvSeeder _sut;
     private readonly Mock<ICsvService> _csvService;
 
     public CsvSeederTests()
     {
-        _fixture = new Fixture().Customize(new AutoMoqCustomization());
-        _csvService = _fixture.Freeze<Mock<ICsvService>>();
+        _csvService = FreezeMock<ICsvService>();
         _csvService.Setup(service => service.ReadRecordsFromCsv(It.IsAny<string>())).Returns(MockPubCsvRows);
-        _sut = _fixture.Create<CsvSeeder>();
+        _sut = Create<CsvSeeder>();
     }
 
     [Fact]

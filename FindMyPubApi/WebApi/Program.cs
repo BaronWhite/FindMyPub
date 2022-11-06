@@ -15,6 +15,8 @@ builder.Services.AddDbContext<MyPubDbContext>(optionsAction: opt =>
 );
 builder.Services.AddSingleton<ISeeder, CsvSeeder>();
 builder.Services.AddSingleton<ICsvService, CsvService>();
+builder.Services.AddScoped<IPubService, PubService>();
+builder.Services.AddScoped<IRepository<Pub>, EntityRepository<Pub>>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
