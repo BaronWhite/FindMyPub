@@ -63,14 +63,9 @@ public class CsvSeederTests : AutoFixtureTestBase
         new Pub()
         {
             Id = 1,
-            Location = new Location()
-            {
-                Id = 1,
-                PubId = 1,
-                Address = "23-25 Great George Street, Leeds LS1 3BB",
-                Latitude = 53.8007317,
-                Longitude = -1.5481764,
-            },
+            Address = "23-25 Great George Street, Leeds LS1 3BB",
+            Latitude = 53.8007317,
+            Longitude = -1.5481764,
             Reviews = new List<PubReview>()
             {
                 new PubReview()

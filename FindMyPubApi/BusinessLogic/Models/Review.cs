@@ -4,7 +4,6 @@ namespace FindMyPubApi.BusinessLogic.Models;
 
 public record PubReview : Entity
 {
-    [JsonIgnore] 
     public Pub Pub { get; init; }
     public long PubId { get; init; }
     public DateTime Date { get; set; }

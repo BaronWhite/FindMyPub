@@ -27,14 +27,9 @@ public class CsvSeeder : ISeeder
         return new Pub()
         {
             Id = id,
-            Location = new Location()
-            {
-                Id = id,
-                PubId = id,
-                Address = row.address,
-                Latitude = Convert.ToDouble(row.lat),
-                Longitude = Convert.ToDouble(row.lng),
-            },
+            Address = row.address,
+            Latitude = Convert.ToDouble(row.lat),
+            Longitude = Convert.ToDouble(row.lng),
             Reviews = new List<PubReview>()
             {
                 new PubReview()
