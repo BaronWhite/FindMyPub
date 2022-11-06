@@ -11,6 +11,15 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <Title>Find My Pub Api</Title>
     <Authors>Luis Balsa</Authors>
+    <DocumentationFile>WebApi.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;CS1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;CS1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

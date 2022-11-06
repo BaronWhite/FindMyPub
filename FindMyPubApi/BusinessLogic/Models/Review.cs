@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace FindMyPubApi.BusinessLogic.Models;
+﻿namespace FindMyPubApi.BusinessLogic.Models;
 
 public record PubReview : Entity
 {

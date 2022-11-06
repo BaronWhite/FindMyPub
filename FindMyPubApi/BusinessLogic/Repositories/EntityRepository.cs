@@ -65,5 +65,9 @@ namespace FindMyPubApi.BusinessLogic.Repositories
         {
             return _context.Set<TEntity>().Find(id) != null;
         }
+        protected bool EntityExists<TTEntity>(long id) where TTEntity : class
+        {
+            return _context.Set<TTEntity>().Find(id) != null;
+        }
     }
 }

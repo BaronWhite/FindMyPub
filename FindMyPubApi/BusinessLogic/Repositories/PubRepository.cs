@@ -4,66 +4,35 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FindMyPubApi.BusinessLogic.Repositories;
 
-public class PubRepository : IEntityRepository<Pub>
+public class PubRepository : EntityRepository<Pub>
 {
-    private readonly MyPubDbContext _context;
-
-    public PubRepository(MyPubDbContext context)
+    public PubRepository(MyPubDbContext context) : base(context)
     {
-        _context = context;
     }
 
-    public virtual async Task<Pub> Create(Pub entity)
-    {
-        await _context.Set<Pub>().AddAsync(entity);
-        await _context.SaveChangesAsync();
-        return entity;
-    }
-
-    public virtual async Task<IReadOnlyList<Pub>> Get()
+    public override async Task<IReadOnlyList<Pub>> Get()
     {
         return await _context.Set<Pub>().Include(pub => pub.Reviews).ToListAsync();
     }
 
-    public virtual async Task<Pub?> GetById(long id)
+    public override async Task<Pub?> GetById(long id)
     {
         return await _context.Set<Pub>().Include(pub => pub.Reviews).FirstOrDefaultAsync(pub => pub.Id == id);
     }
+}
 
-    public virtual async Task Update(long id, Pub entity)
+public class PubReviewRepository : EntityRepository<PubReview>
+{
+    public PubReviewRepository(MyPubDbContext context) : base(context)
     {
-        try
-        {
-            _context.Set<Pub>().Update(entity);
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!EntityExists(id))
-            {
-                throw new KeyNotFoundException();
-            }
-            else
-            {
-                throw;
-            }
-        }
     }
 
-    public virtual async Task Delete(long id)
+    public override async Task<PubReview> Create(PubReview entity)
     {
-        var entity = await _context.Set<Pub>().FindAsync(id);
-        if (entity == null)
-        {
-            throw new KeyNotFoundException();
-        }
+        if (!EntityExists<Pub>(entity.PubId)) throw new KeyNotFoundException($"There is no Pub with Id {entity.PubId}");
 
-        _context.Set<Pub>().Remove(entity);
+        await _context.Set<PubReview>().AddAsync(entity);
         await _context.SaveChangesAsync();
-    }
-
-    protected bool EntityExists(long id)
-    {
-        return _context.Set<Pub>().Find(id) != null;
+        return entity;
     }
 }

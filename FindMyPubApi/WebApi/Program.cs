@@ -16,12 +16,14 @@ builder.Services.AddDbContext<MyPubDbContext>(optionsAction: opt =>
 builder.Services.AddSingleton<ISeeder, CsvSeeder>();
 builder.Services.AddSingleton<ICsvService, CsvService>();
 builder.Services.AddScoped<IPubService, PubService>();
-builder.Services.AddScoped<IRepository<Pub>, EntityRepository<Pub>>();
+builder.Services.AddScoped<IEntityService<PubReview>, EntityService<PubReview>>();
+builder.Services.AddScoped<IEntityRepository<Pub>, PubRepository>();
+builder.Services.AddScoped<IEntityRepository<PubReview>, PubReviewRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options => options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "WebApi.xml")));
 
 var app = builder.Build();
 
