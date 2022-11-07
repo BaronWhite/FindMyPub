@@ -23,7 +23,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/custom-theme.scss",
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -64,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "FindMyPub.Web:build:production"
+              "browserTarget": "FindMyPubWeb:build:production"
             },
             "development": {
-              "browserTarget": "FindMyPub.Web:build:development"
+              "browserTarget": "FindMyPubWeb:build:development"
             }
           },
           "defaultConfiguration": "development",
@@ -78,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "FindMyPub.Web:build"
+            "browserTarget": "FindMyPubWeb:build"
           }
         },
         "test": {
@@ -93,7 +94,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
