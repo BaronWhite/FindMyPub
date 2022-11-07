@@ -5,13 +5,16 @@ namespace FindMyPubApi.WebApi.Models;
 /// <summary>
 /// Location details of a pub
 /// </summary>
-/// <param name="PubId"></param>
-/// <param name="Address"></param>
-/// <param name="Latitude"></param>
-/// <param name="Longitude"></param>
-public record LocationDto
-(
-    string Address,
-    double Latitude,
-    double Longitude
-);
+public record LocationDto(string Address, double Latitude, double Longitude)
+{
+    /// <summary>Full address</summary>
+    public string Address { get; init; } = Address;
+
+    /// <summary>Latitude, between -90 and 90</summary>
+    [Range(-90, 90)]
+    public double Latitude { get; init; } = Latitude;
+
+    /// <summary>Longitude, between -180 and 180</summary>
+    [Range(-180, 180)]
+    public double Longitude { get; init; } = Longitude;
+}

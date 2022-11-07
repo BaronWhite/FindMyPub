@@ -2,7 +2,7 @@
 
 namespace FindMyPubApi.BusinessLogic.Models;
 
-public record Entity
+public class Entity
 {
     [Key]
     public long Id { get; init; }

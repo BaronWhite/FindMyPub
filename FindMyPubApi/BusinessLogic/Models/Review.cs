@@ -1,9 +1,9 @@
 ﻿namespace FindMyPubApi.BusinessLogic.Models;
 
-public record PubReview : Entity
+public class PubReview : Entity
 {
-    public Pub Pub { get; init; }
-    public long PubId { get; init; }
+    public Pub Pub { get; set; }
+    public long PubId { get; set; }
     public DateTime Date { get; set; }
     public string Excerpt { get; set; }
     public float StarsBeer { get; set; }

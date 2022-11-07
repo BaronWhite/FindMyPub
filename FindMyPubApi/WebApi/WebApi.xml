@@ -11,6 +11,13 @@
             <param name="searchString">Optional parameter to search by name</param>
             <returns></returns>
         </member>
+        <member name="M:FindMyPubApi.WebApi.Controllers.PubsController.GetPubSummaries(System.String)">
+            <summary>
+            Gets all the pubs
+            </summary>
+            <param name="searchString">Optional parameter to search by name</param>
+            <returns></returns>
+        </member>
         <member name="M:FindMyPubApi.WebApi.Controllers.PubsController.GetPub(System.Int64)">
             <summary>
             Gets a pub by id
@@ -41,100 +48,20 @@
             <summary>
             Location details of a pub
             </summary>
-            <param name="PubId"></param>
-            <param name="Address"></param>
-            <param name="Latitude"></param>
-            <param name="Longitude"></param>
         </member>
         <member name="M:FindMyPubApi.WebApi.Models.LocationDto.#ctor(System.String,System.Double,System.Double)">
             <summary>
             Location details of a pub
             </summary>
-            <param name="PubId"></param>
-            <param name="Address"></param>
-            <param name="Latitude"></param>
-            <param name="Longitude"></param>
         </member>
         <member name="P:FindMyPubApi.WebApi.Models.LocationDto.Address">
-            <summary></summary>
+            <summary>Full address</summary>
         </member>
         <member name="P:FindMyPubApi.WebApi.Models.LocationDto.Latitude">
-            <summary></summary>
+            <summary>Latitude, between -90 and 90</summary>
         </member>
         <member name="P:FindMyPubApi.WebApi.Models.LocationDto.Longitude">
-            <summary></summary>
-        </member>
-        <member name="T:FindMyPubApi.WebApi.Models.PubDto">
-            <summary>
-            An establishment for the sale of beer and other drinks, and sometimes also food, to be consumed on the premises.
-            </summary>
-            <param name="Name">Name of the establishment</param>
-            <param name="Category">Category of the pub</param>
-            <param name="Thumbnail">Url to a thumbnail</param>
-            <param name="Location">Location details</param>
-            <param name="Url">Url to the website</param>
-            <param name="Phone">Contact number</param>
-            <param name="Twitter">Twitter handle</param>
-            <param name="Tags">Associated tags</param>
-            <param name="Reviews">List of reviews</param>
-            <param name="StarsBeer">Overall rating of the beer</param>
-            <param name="StarsAtmosphere">Overall rating of the atmosphere</param>
-            <param name="StarsAmenities">Overall rating of the amenities</param>
-            <param name="StarsValue">Overall rating of the pub</param>
-        </member>
-        <member name="M:FindMyPubApi.WebApi.Models.PubDto.#ctor(System.Int64,System.String,System.String,System.String,FindMyPubApi.WebApi.Models.LocationDto,System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.Collections.Generic.List{FindMyPubApi.WebApi.Models.PubReviewDto},System.Single,System.Single,System.Single,System.Single)">
-            <summary>
-            An establishment for the sale of beer and other drinks, and sometimes also food, to be consumed on the premises.
-            </summary>
-            <param name="Name">Name of the establishment</param>
-            <param name="Category">Category of the pub</param>
-            <param name="Thumbnail">Url to a thumbnail</param>
-            <param name="Location">Location details</param>
-            <param name="Url">Url to the website</param>
-            <param name="Phone">Contact number</param>
-            <param name="Twitter">Twitter handle</param>
-            <param name="Tags">Associated tags</param>
-            <param name="Reviews">List of reviews</param>
-            <param name="StarsBeer">Overall rating of the beer</param>
-            <param name="StarsAtmosphere">Overall rating of the atmosphere</param>
-            <param name="StarsAmenities">Overall rating of the amenities</param>
-            <param name="StarsValue">Overall rating of the pub</param>
-        </member>
-        <member name="P:FindMyPubApi.WebApi.Models.PubDto.Name">
-            <summary>Name of the establishment</summary>
-        </member>
-        <member name="P:FindMyPubApi.WebApi.Models.PubDto.Category">
-            <summary>Category of the pub</summary>
-        </member>
-        <member name="P:FindMyPubApi.WebApi.Models.PubDto.Thumbnail">
-            <summary>Url to a thumbnail</summary>
-        </member>
-        <member name="P:FindMyPubApi.WebApi.Models.PubDto.Location">
-            <summary>Location details</summary>
-        </member>
-        <member name="P:FindMyPubApi.WebApi.Models.PubDto.Url">
-            <summary>Url to the website</summary>
-        </member>
-        <member name="P:FindMyPubApi.WebApi.Models.PubDto.Phone">
-            <summary>Contact number</summary>
-        </member>
-        <member name="P:FindMyPubApi.WebApi.Models.PubDto.Twitter">
-            <summary>Twitter handle</summary>
-        </member>
-        <member name="P:FindMyPubApi.WebApi.Models.PubDto.StarsBeer">
-            <summary>Overall rating of the beer</summary>
-        </member>
-        <member name="P:FindMyPubApi.WebApi.Models.PubDto.StarsAtmosphere">
-            <summary>Overall rating of the atmosphere</summary>
-        </member>
-        <member name="P:FindMyPubApi.WebApi.Models.PubDto.StarsAmenities">
-            <summary>Overall rating of the amenities</summary>
-        </member>
-        <member name="P:FindMyPubApi.WebApi.Models.PubDto.StarsValue">
-            <summary>Overall rating of the pub</summary>
-        </member>
-        <member name="P:FindMyPubApi.WebApi.Models.PubDto.Tags">
-            <summary>Associated tags</summary>
+            <summary>Longitude, between -180 and 180</summary>
         </member>
         <member name="P:FindMyPubApi.WebApi.Models.PubDto.Reviews">
             <summary>List of reviews</summary>
@@ -143,25 +70,11 @@
             <summary>
             A customer review of a pub
             </summary>
-            <param name="PubId">Id of the Pub the review relates to</param>
-            <param name="Date">Date the review was written</param>
-            <param name="Excerpt">The review itself</param>
-            <param name="StarsBeer">Rating of the beer</param>
-            <param name="StarsAtmosphere">Rating of the atmosphere</param>
-            <param name="StarsAmenities">Rating of the amenities</param>
-            <param name="StarsValue">Rating of the pub</param>
         </member>
         <member name="M:FindMyPubApi.WebApi.Models.PubReviewDto.#ctor(System.Int64,System.Int64,System.DateTime,System.String,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             A customer review of a pub
             </summary>
-            <param name="PubId">Id of the Pub the review relates to</param>
-            <param name="Date">Date the review was written</param>
-            <param name="Excerpt">The review itself</param>
-            <param name="StarsBeer">Rating of the beer</param>
-            <param name="StarsAtmosphere">Rating of the atmosphere</param>
-            <param name="StarsAmenities">Rating of the amenities</param>
-            <param name="StarsValue">Rating of the pub</param>
         </member>
         <member name="P:FindMyPubApi.WebApi.Models.PubReviewDto.PubId">
             <summary>Id of the Pub the review relates to</summary>
@@ -174,15 +87,62 @@
         </member>
         <member name="P:FindMyPubApi.WebApi.Models.PubReviewDto.StarsBeer">
             <summary>Rating of the beer</summary>
+            <example>3</example>
         </member>
         <member name="P:FindMyPubApi.WebApi.Models.PubReviewDto.StarsAtmosphere">
             <summary>Rating of the atmosphere</summary>
+            <example>3</example>
         </member>
         <member name="P:FindMyPubApi.WebApi.Models.PubReviewDto.StarsAmenities">
             <summary>Rating of the amenities</summary>
+            <example>3</example>
         </member>
         <member name="P:FindMyPubApi.WebApi.Models.PubReviewDto.StarsValue">
             <summary>Rating of the pub</summary>
+            <example>3</example>
+        </member>
+        <member name="P:FindMyPubApi.WebApi.Models.PubSummaryDto.Id">
+            <summary>Unique identifier</summary>
+        </member>
+        <member name="P:FindMyPubApi.WebApi.Models.PubSummaryDto.Name">
+            <summary>Name of the establishment</summary>
+            <example>Queens Head</example>
+        </member>
+        <member name="P:FindMyPubApi.WebApi.Models.PubSummaryDto.Category">
+            <summary>Category of the pub</summary>
+        </member>
+        <member name="P:FindMyPubApi.WebApi.Models.PubSummaryDto.Thumbnail">
+            <summary>Url to a thumbnail</summary>
+        </member>
+        <member name="P:FindMyPubApi.WebApi.Models.PubSummaryDto.Location">
+            <summary>Location details</summary>
+        </member>
+        <member name="P:FindMyPubApi.WebApi.Models.PubSummaryDto.Url">
+            <summary>Url to the website</summary>
+        </member>
+        <member name="P:FindMyPubApi.WebApi.Models.PubSummaryDto.Phone">
+            <summary>Contact number</summary>
+        </member>
+        <member name="P:FindMyPubApi.WebApi.Models.PubSummaryDto.Twitter">
+            <summary>Twitter handle</summary>
+        </member>
+        <member name="P:FindMyPubApi.WebApi.Models.PubSummaryDto.Tags">
+            <summary>Associated tags</summary>
+        </member>
+        <member name="P:FindMyPubApi.WebApi.Models.PubSummaryDto.StarsBeer">
+            <summary>Overall rating of the beer</summary>
+            <example>2</example>
+        </member>
+        <member name="P:FindMyPubApi.WebApi.Models.PubSummaryDto.StarsAtmosphere">
+            <summary>Overall rating of the atmosphere</summary>
+        </member>
+        <member name="P:FindMyPubApi.WebApi.Models.PubSummaryDto.StarsAmenities">
+            <summary>Overall rating of the amenities</summary>
+            <example>3</example>
+        </member>
+        <member name="P:FindMyPubApi.WebApi.Models.PubSummaryDto.StarsValue">
+            <summary>Overall rating of the pub</summary>
+            <example>2</example>
         </member>
     </members>
 </doc>

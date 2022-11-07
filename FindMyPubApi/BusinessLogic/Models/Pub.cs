@@ -1,6 +1,6 @@
 ﻿namespace FindMyPubApi.BusinessLogic.Models;
 
-public record Pub : Entity
+public class Pub : Entity
 {
     public string Name { get; set; }
     public string Category { get; set; }

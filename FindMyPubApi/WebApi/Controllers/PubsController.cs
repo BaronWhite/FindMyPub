@@ -32,6 +32,18 @@ namespace FindMyPubApi.WebApi.Controllers
         }
 
         /// <summary>
+        /// Gets all the pubs
+        /// </summary>
+        /// <param name="searchString">Optional parameter to search by name</param>
+        /// <returns></returns>
+        [HttpGet("summary")]
+        public async Task<ActionResult<IReadOnlyList<PubSummaryDto>>> GetPubSummaries(string? searchString = null)
+        {
+            var pubs = string.IsNullOrEmpty(searchString) ? await _service.Get() : await _service.GetWithName(searchString);
+            return Ok(pubs.Select(pub => (PubSummaryDto)pub));
+        }
+
+        /// <summary>
         /// Gets a pub by id
         /// </summary>
         /// <returns></returns>

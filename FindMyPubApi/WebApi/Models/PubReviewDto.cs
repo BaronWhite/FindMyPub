@@ -6,15 +6,7 @@ namespace FindMyPubApi.WebApi.Models;
 /// <summary>
 /// A customer review of a pub
 /// </summary>
-/// <param name="PubId">Id of the Pub the review relates to</param>
-/// <param name="Date">Date the review was written</param>
-/// <param name="Excerpt">The review itself</param>
-/// <param name="StarsBeer">Rating of the beer</param>
-/// <param name="StarsAtmosphere">Rating of the atmosphere</param>
-/// <param name="StarsAmenities">Rating of the amenities</param>
-/// <param name="StarsValue">Rating of the pub</param>
-public record PubReviewDto
-(
+public record PubReviewDto(
     [Required] long Id,
     [Required] long PubId,
     [Required] DateTime Date,
@@ -27,6 +19,31 @@ public record PubReviewDto
 {
     public static explicit operator PubReviewDto(PubReview review) => FromPubReview(review);
     public static explicit operator PubReview(PubReviewDto review) => ToPubReview(review);
+
+    /// <summary>Id of the Pub the review relates to</summary>
+    public long PubId { get; init; } = PubId;
+
+    /// <summary>Date the review was written</summary>
+    public DateTime Date { get; init; } = Date;
+
+    /// <summary>The review itself</summary>
+    public string Excerpt { get; init; } = Excerpt;
+
+    /// <summary>Rating of the beer</summary>
+    /// <example>3</example>
+    public float StarsBeer { get; init; } = StarsBeer;
+
+    /// <summary>Rating of the atmosphere</summary>
+    /// <example>3</example>
+    public float StarsAtmosphere { get; init; } = StarsAtmosphere;
+
+    /// <summary>Rating of the amenities</summary>
+    /// <example>3</example>
+    public float StarsAmenities { get; init; } = StarsAmenities;
+
+    /// <summary>Rating of the pub</summary>
+    /// <example>3</example>
+    public float StarsValue { get; init; } = StarsValue;
 
     private static PubReviewDto FromPubReview(PubReview review) =>
         new PubReviewDto(

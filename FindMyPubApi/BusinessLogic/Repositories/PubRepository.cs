@@ -29,7 +29,7 @@ public class PubReviewRepository : EntityRepository<PubReview>
 
     public override async Task<PubReview> Create(PubReview entity)
     {
-        if (!EntityExists<Pub>(entity.PubId)) throw new KeyNotFoundException($"There is no Pub with Id {entity.PubId}");
+        if (!EntityExists<Pub>(entity.PubId)) throw new ArgumentException($"There is no Pub with Id [{entity.PubId}]");
 
         await _context.Set<PubReview>().AddAsync(entity);
         await _context.SaveChangesAsync();

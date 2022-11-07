@@ -29,8 +29,8 @@ namespace FindMyPubApi.BusinessLogic.Contexts
 
             var records = _seeder.GetRecords();
 
-            modelBuilder.Entity<Pub>().HasData(records.Select(pub => pub with { Reviews = null }));
-            modelBuilder.Entity<PubReview>().HasData(records.SelectMany(pub => pub.Reviews).Select(review => review with { Pub = null }).ToList());
+            modelBuilder.Entity<PubReview>().HasData(records.SelectMany(pub => pub.Reviews).Select(review => { review.Pub = null!; return review; }).ToList());
+            modelBuilder.Entity<Pub>().HasData(records.Select(pub => { pub.Reviews = null!; return pub; }));
         }
     }
 }
