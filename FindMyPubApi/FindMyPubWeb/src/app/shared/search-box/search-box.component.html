@@ -1,7 +1,7 @@
 <div class="search-box">
   <fa-icon [icon]="['fas','search']"></fa-icon>
   <input #search matInput type="text" [formControl]="searchControl" [placeholder]="placeholder" [disabled]="disabled" (keyup)="searchChange.emit($event);">
-  <button mat-flat-button matTooltip="Clear" class="clear" *ngIf="search.value?.length" (click)="clearSearch()">
+  <button matTooltip="Clear" class="clear" *ngIf="search.value?.length" (click)="clearSearch()">
     <fa-icon [icon]="['fas','times']"></fa-icon>
   </button>
 </div>

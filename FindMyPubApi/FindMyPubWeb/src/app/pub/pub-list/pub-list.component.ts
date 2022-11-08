@@ -1,11 +1,13 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Subscription } from 'rxjs';
+import { firstValueFrom, Subscription } from 'rxjs';
 import { IPubSummary } from 'src/app/core/models/pub-summary';
 import { GoogleMapsService } from 'src/app/core/services/google-maps.service';
 import { PubDataService } from 'src/app/core/services/pub-data-service';
+import { PubComponent, PubComponentDialogData } from '../pub/pub.component';
 
 @Component({
   selector: 'app-pub-list',
@@ -23,7 +25,7 @@ export class PubListComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private pubService: PubDataService, public googleMapsService: GoogleMapsService) { }
+  constructor(private pubService: PubDataService, public googleMapsService: GoogleMapsService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadPubs();
@@ -44,6 +46,7 @@ export class PubListComponent implements OnInit, OnDestroy {
       this.paginator.pageSize = 10;
       this.pubDataSource.paginator = this.paginator;
       this.pubDataSource.filterPredicate = this.filterPredicate;
+      this.openPubDialog(pubs[0]);
     } catch (error) {
       // TODO: Implement notifications
     }
@@ -54,4 +57,15 @@ export class PubListComponent implements OnInit, OnDestroy {
     let match = data.name.toLowerCase().includes(filter) || data.location.address.toLowerCase().includes(filter);
     return match;
   };
+
+  async openPubDialog(pub: IPubSummary) {
+    let dialogRef = this.dialog.open(PubComponent, {
+      data: new PubComponentDialogData(pub.id, pub.name, pub.thumbnail)
+    });
+    let hasChanges = await firstValueFrom(dialogRef.afterClosed());
+    if (hasChanges) {
+      // TODO: Update row in table or reload
+    }
+  }
+
 }

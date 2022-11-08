@@ -9,6 +9,12 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+span {
+  display: flex;
+  flex-direction: row;
+}
+
+// I'd create mixins and variables files
 .w-100 {
   width: 100%;
 }

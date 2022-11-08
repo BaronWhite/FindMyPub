@@ -1,1 +1,61 @@
-<p>pub works!</p>
+<h1 mat-dialog-title>{{data.name}}</h1>
+<div mat-dialog-content>
+  <mat-progress-bar mode="buffer" *ngIf="isLoading"></mat-progress-bar>
+  <ng-container *ngIf="pub">
+    <span>
+      <img [src]="data.thumbnail" alt="thumbnail" class="thumbnail">
+      <div>
+        <p><b>Address:</b>{{pub.location.address}}</p>
+        <p><b>DD:</b> {{pub.location.latitude}},{{pub.location.latitude}}</p>
+        <p><b>Tags:</b> {{pub.tags}}</p>
+        <span>
+          <b>Amenities:</b>
+          <star-rating [starType]="'svg'" [rating]="pub.starsAmenities"></star-rating>
+        </span>
+        <span>
+          <b>Atmosphere:</b>
+          <star-rating [starType]="'svg'" [rating]="pub.starsAtmosphere"></star-rating>
+        </span>
+        <span>
+          <b>Beer:</b>
+          <star-rating [starType]="'svg'" [rating]="pub.starsBeer"></star-rating>
+        </span>
+        <span>
+          <b>Value:</b>
+          <star-rating [starType]="'svg'" [rating]="pub.starsValue"></star-rating>
+        </span>
+      </div>
+    </span>
+    <br>
+    <div>
+      <b>Reviews</b>
+      <br>
+      <!-- TODO: This should scroll nicely -->
+      <ng-container *ngFor="let review of pub.reviews">
+        <!-- TODO: Could be separated to an ng template -->
+        <!-- Imagine it would refactor into that like resharper, magic -->
+        <div class="review">
+          <span class="header">
+            <p><b>Anonymous</b></p>
+            <p>{{review.date | date : 'short'}}</p>
+          </span>
+          <span>
+            <p> {{review.excerpt}}</p>
+          </span>
+          <span class="ratings">
+            Amenities: <star-rating [starType]="'svg'" [rating]="pub.starsAmenities"></star-rating>
+            Atmosphere: <star-rating [starType]="'svg'" [rating]="pub.starsAtmosphere"></star-rating>
+            Beer: <star-rating [starType]="'svg'" [rating]="pub.starsBeer"></star-rating>
+            Value: <star-rating [starType]="'svg'" [rating]="pub.starsValue"></star-rating>
+          </span>
+        </div>
+      </ng-container>
+      <br>
+      <button mat-stroked-button>Add your review</button>
+    </div>
+  </ng-container>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+  <button mat-stroked-button mat-dialog-close matTooltip="There's actually nothing to save, just kidding...">Save</button>
+</div>

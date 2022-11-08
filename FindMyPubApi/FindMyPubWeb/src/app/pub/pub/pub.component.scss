@@ -1,0 +1,22 @@
+.thumbnail {
+  width: 300px;
+  height: 250px;
+  border-radius: 10px;
+  padding-right: 1em; // I'd use mixins for this instead
+}
+
+.review {
+  border: 1px solid #b3b3b3;
+  border-radius: 5px;
+  padding: 5px;
+  .header {
+    justify-content: space-between;
+  }
+  .ratings {
+    justify-content: space-between;
+  }
+}
+
+.mat-dialog-actions {
+  justify-content: space-between;
+}
