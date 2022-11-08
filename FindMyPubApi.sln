@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{39E2AB33-AF37-44B7-A723-874B858F1439}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindMyPub.WebApi", "FindMyPub.WebApi\FindMyPub.WebApi.csproj", "{39E2AB33-AF37-44B7-A723-874B858F1439}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4E305F8E-5353-49AA-8C6F-37A733324CB4} = {4E305F8E-5353-49AA-8C6F-37A733324CB4}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{4E305F8E-5353-49AA-8C6F-37A733324CB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindMyPub.BusinessLogic", "FindMyPub.BusinessLogic\FindMyPub.BusinessLogic.csproj", "{4E305F8E-5353-49AA-8C6F-37A733324CB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic.Tests", "BusinessLogic.Tests\BusinessLogic.Tests.csproj", "{2196C403-67CC-4F8A-B595-6A578BE1BFC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindMyPub.BusinessLogic.Tests", "FindMyPub.BusinessLogic.Tests\FindMyPub.BusinessLogic.Tests.csproj", "{2196C403-67CC-4F8A-B595-6A578BE1BFC1}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "FindMyPub.Web", "FindMyPubWeb\FindMyPub.Web.esproj", "{C9387550-C3AD-4730-A2AD-1DFE4164854A}"
 EndProject

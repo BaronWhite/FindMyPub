@@ -7,9 +7,9 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyName>FindMyPubApi.$(MSBuildProjectName)</AssemblyName>
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
 
-    <RootNamespace>FindMyPubApi.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
+    <ProjectReference Include="..\FindMyPub.BusinessLogic\FindMyPub.BusinessLogic.csproj" />
   </ItemGroup>
 
 </Project>
