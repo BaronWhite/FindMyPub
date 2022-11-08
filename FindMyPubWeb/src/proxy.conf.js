@@ -4,7 +4,7 @@ const PROXY_CONFIG = [
       "/pubs",
       "/reviews",
     ],
-    target: "https://localhost:7141",
+    target: "http://localhost:5141",
     secure: false
   }
 ]
