@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { IPub } from '../models/pub';
+import { IPubReview } from '../models/pub-review';
 import { IPubSummary } from '../models/pub-summary';
 
 @Injectable({
@@ -17,5 +18,9 @@ export class PubDataService {
 
   getPub(id: number): Promise<IPub> {
     return firstValueFrom(this.http.get<IPub>(`/pubs/${id}`));
+  }
+
+  async savetPubReview(review: IPubReview): Promise<void> {
+    await firstValueFrom(this.http.post<IPubReview>(`/reviews`, review));
   }
 }

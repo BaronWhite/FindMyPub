@@ -5,6 +5,15 @@
   padding-right: 1em; // I'd use mixins for this instead
 }
 
+.reviews{
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+
+  max-height: 30em;
+  overflow-y: auto;
+}
+
 .review {
   border: 1px solid #b3b3b3;
   border-radius: 5px;
@@ -18,5 +27,5 @@
 }
 
 .mat-dialog-actions {
-  justify-content: space-between;
+  justify-content: end;
 }

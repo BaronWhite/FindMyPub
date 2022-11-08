@@ -1,7 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { of } from 'rxjs';
 import { IPub } from 'src/app/core/models/pub';
 import { PubDataService } from 'src/app/core/services/pub-data-service';
 
@@ -11,6 +12,8 @@ describe('PubComponent', () => {
   let component: PubComponent;
   let fixture: ComponentFixture<PubComponent>;
   let pubDataService: PubDataService;
+  let dialog: MatDialog;
+
   const pub: IPub = {
     id: 1,
     name: "Queens Head",
@@ -27,12 +30,14 @@ describe('PubComponent', () => {
     starsAmenities: 3,
     starsValue: 3,
   };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PubComponent],
       imports: [
         HttpClientTestingModule,
         MatProgressBarModule,
+        MatDialogModule,
       ],
       providers: [
         { provide: MatDialogRef, useValue: { close: () => { } } },
@@ -44,9 +49,9 @@ describe('PubComponent', () => {
     fixture = TestBed.createComponent(PubComponent);
     component = fixture.componentInstance;
     pubDataService = TestBed.inject(PubDataService);
+    dialog = TestBed.inject(MatDialog);
 
     spyOn(pubDataService, 'getPub').and.resolveTo(pub);
-
 
     fixture.detectChanges();
   });
@@ -71,6 +76,23 @@ describe('PubComponent', () => {
       pubDataService.getPub = jasmine.createSpy().and.rejectWith();
       await component.loadPub(pub.id)
       expect(component).toBeTruthy();
+    });
+  });
+
+
+  describe('openNewReviewDialog', () => {
+    const dialogRefConfirmSpy = jasmine.createSpyObj({ afterClosed: of(true), close: null });
+
+    it('should open dialog', async () => {
+      spyOn(dialog, 'open').and.returnValue(dialogRefConfirmSpy);
+      await component.openNewReviewDialog(pub);
+      expect(dialog.open).toHaveBeenCalled();
+    });
+
+    it('should reload pub if changes', async () => {
+      spyOn(dialog, 'open').and.returnValue(dialogRefConfirmSpy);
+      await component.openNewReviewDialog(pub);
+      expect(pubDataService.getPub).toHaveBeenCalledWith(pub.id);
     });
   });
 });

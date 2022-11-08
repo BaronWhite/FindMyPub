@@ -46,7 +46,6 @@ export class PubListComponent implements OnInit, OnDestroy {
       this.paginator.pageSize = 10;
       this.pubDataSource.paginator = this.paginator;
       this.pubDataSource.filterPredicate = this.filterPredicate;
-      this.openPubDialog(pubs[0]);
     } catch (error) {
       // TODO: Implement notifications
     }
@@ -63,9 +62,7 @@ export class PubListComponent implements OnInit, OnDestroy {
       data: new PubComponentDialogData(pub.id, pub.name, pub.thumbnail)
     });
     let hasChanges = await firstValueFrom(dialogRef.afterClosed());
-    if (hasChanges) {
-      // TODO: Update row in table or reload
-    }
+    // TODO: Update row in table or reload if has changes
   }
 
 }

@@ -1,6 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { fakeAsync, TestBed } from '@angular/core/testing';
 import { IPub } from '../models/pub';
+import { IPubReview } from '../models/pub-review';
 import { IPubSummary } from '../models/pub-summary';
 
 import { PubDataService } from './pub-data-service';
@@ -60,6 +61,25 @@ describe('PubDataService', () => {
     const req = httpMock.expectOne(`/pubs/${pub.id}`);
     expect(req.request.method).toEqual('GET');
     req.flush(pub);
+    httpMock.verify;
+  }));
+
+  it('should save a review', fakeAsync(() => {
+    const review: IPubReview = {
+      id: 1,
+      pubId: 1,
+      date: new Date(),
+      excerpt: "I am a review.",
+      starsBeer: 1,
+      starsAtmosphere: 2,
+      starsAmenities: 3,
+      starsValue: 4,
+    }
+    service.savetPubReview(review);
+
+    const req = httpMock.expectOne(`/reviews`);
+    expect(req.request.method).toEqual('POST');
+    expect(req.request.body).toEqual(review);
     httpMock.verify;
   }));
 });

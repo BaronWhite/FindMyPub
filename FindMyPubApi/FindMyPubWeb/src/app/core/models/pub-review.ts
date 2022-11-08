@@ -1,5 +1,5 @@
 
-export interface IReview {
+export interface IPubReview {
   id: number;
   pubId: number;
   date: Date;

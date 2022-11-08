@@ -1,0 +1,17 @@
+.ratings {
+  column-gap: 1em;
+}
+
+.rating-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mat-slider-horizontal {
+  height: 35px;
+}
+
+.mat-dialog-actions {
+  justify-content: end;
+}

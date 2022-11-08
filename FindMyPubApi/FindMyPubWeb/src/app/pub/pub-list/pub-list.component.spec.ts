@@ -67,7 +67,7 @@ describe('PubListComponent', () => {
     component = fixture.componentInstance;
 
     spyOn(pubDataService, 'getPubsSummary').and.resolveTo(pubs);
-    spyOn(dialog, 'open').and.resolveTo(dialogRefConfirmSpy);
+    spyOn(dialog, 'open').and.returnValue(dialogRefConfirmSpy);
 
     fixture.detectChanges();
   });
@@ -103,8 +103,8 @@ describe('PubListComponent', () => {
   });
 
   describe('openPubDialog', () => {
-    it('should open dialog', () => {
-      component.openPubDialog(pub);
+    it('should open dialog', async () => {
+      await component.openPubDialog(pub);
       expect(dialog.open).toHaveBeenCalled();
     });
   });

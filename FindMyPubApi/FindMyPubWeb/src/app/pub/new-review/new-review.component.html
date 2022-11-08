@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>{{data.name}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <span class="ratings">
+      <ng-container *ngTemplateOutlet="ratingSlider; context:{form:form,control:'starsAtmosphere', label:'Atmosphere'}"></ng-container>
+      <ng-container *ngTemplateOutlet="ratingSlider; context:{form:form,control:'starsAmenities', label:'Amenities'}"></ng-container>
+      <ng-container *ngTemplateOutlet="ratingSlider; context:{form:form,control:'starsBeer', label:'Beer'}"></ng-container>
+      <ng-container *ngTemplateOutlet="ratingSlider; context:{form:form,control:'starsValue', label:'Value'}"></ng-container>
+    </span>
+    <div>
+      <mat-form-field appearance="outline" class="w-100">
+        <textarea matInput formControlName="excerpt" placeholder="So tell us...what was it like..?" rows="5"></textarea>
+        <mat-error *ngIf="form.get('excerpt')?.invalid">Please write a review.</mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+  <button mat-stroked-button matTooltip="Go ahead! Roast them!" (click)="saveReview(form)" [disabled]="form.invalid">Save</button>
+</div>
+
+<ng-template #ratingSlider let-form="form" let-control="control" let-label="label">
+  <div class="rating-slider">
+    <mat-label>{{label}}</mat-label>
+    <mat-slider [value]="form.get(control)?.value" (change)="form.get(control)?.setValue($event.value)"
+                [min]="ratingMin" [max]="ratingMax" [step]="ratingStep"></mat-slider>
+    <input matInput [formControl]="form.get(control)" style="display:none" />
+    <mat-error *ngIf="form.get(control)?.invalid">Select a rating</mat-error>
+  </div>
+</ng-template>

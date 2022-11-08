@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { firstValueFrom } from 'rxjs';
 import { IPub } from 'src/app/core/models/pub';
 import { PubDataService } from 'src/app/core/services/pub-data-service';
+import { NewReviewComponent, NewReviewComponentDialogData } from '../new-review/new-review.component';
 
 @Component({
   selector: 'app-pub',
@@ -13,9 +15,11 @@ export class PubComponent implements OnInit {
   isLoading: boolean = false;
   pub!: IPub;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: PubComponentDialogData,
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: PubComponentDialogData,
     private dialogRef: MatDialogRef<PubComponent>,
     private pubService: PubDataService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -32,6 +36,15 @@ export class PubComponent implements OnInit {
     finally { this.isLoading = false; }
   }
 
+  async openNewReviewDialog(pub: IPub) {
+    let dialogRef = this.dialog.open(NewReviewComponent, {
+      data: new NewReviewComponentDialogData(pub.id, pub.name)
+    });
+    let hasChanges = await firstValueFrom(dialogRef.afterClosed());
+    if (hasChanges) {
+      this.loadPub(this.data.pubId);
+    }
+  }
 }
 
 export class PubComponentDialogData {

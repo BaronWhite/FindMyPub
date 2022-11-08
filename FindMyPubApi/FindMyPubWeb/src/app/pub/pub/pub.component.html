@@ -27,10 +27,9 @@
       </div>
     </span>
     <br>
-    <div>
+    <div class="reviews">
       <b>Reviews</b>
-      <br>
-      <!-- TODO: This should scroll nicely -->
+      <!-- TODO: This *should* scroll nicely, no time :3 -->
       <ng-container *ngFor="let review of pub.reviews">
         <!-- TODO: Could be separated to an ng template -->
         <!-- Imagine it would refactor into that like resharper, magic -->
@@ -50,12 +49,10 @@
           </span>
         </div>
       </ng-container>
-      <br>
-      <button mat-stroked-button>Add your review</button>
     </div>
   </ng-container>
 </div>
 <div mat-dialog-actions>
   <button mat-stroked-button mat-dialog-close>Cancel</button>
-  <button mat-stroked-button mat-dialog-close matTooltip="There's actually nothing to save, just kidding...">Save</button>
+  <button mat-stroked-button (click)="openNewReviewDialog(pub)">Add your review</button>
 </div>
